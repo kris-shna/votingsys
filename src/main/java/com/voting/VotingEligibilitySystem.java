@@ -20,26 +20,31 @@ class Voter {
         this.idValid = idValid;
     }
 
+    // Returns true if voter satisfies all conditions
+    public boolean isEligible() {
+
+        return age >= 18
+                && citizenship.equalsIgnoreCase("Indian")
+                && idValid;
+    }
+
     public void checkEligibility() {
 
         System.out.println("\nVoter Name: " + name);
         System.out.println("Voter ID: " + voterId);
 
-        boolean eligible = true;
+        boolean eligible = isEligible();
 
         if (age < 18) {
             System.out.println("Reason: Underage (must be 18 or above)");
-            eligible = false;
         }
 
         if (!citizenship.equalsIgnoreCase("Indian")) {
             System.out.println("Reason: Not an Indian citizen");
-            eligible = false;
         }
 
         if (!idValid) {
             System.out.println("Reason: Invalid Voter ID");
-            eligible = false;
         }
 
         if (eligible) {
@@ -49,7 +54,6 @@ class Voter {
         }
     }
 }
-
 
 public class VotingEligibilitySystem {
 
